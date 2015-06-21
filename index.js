@@ -19,7 +19,7 @@ var UNIT_CONVERTER = {};
 var UNIT_TIMES = {};
 UNIT_TIMES[SEC] = 3000; // one second is too annoying
 UNIT_TIMES[MIN] = 1000 * 60;
-UNIT_TIMES[HR] = UNIT_TIMES[MIN] * 60;
+UNIT_TIMES[HR] = UNIT_TIMES[MIN] * 5; // one hour is too long
 UNIT_TIMES[DAY] = UNIT_TIMES[HR] * 24;
 
 // http://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array
@@ -82,8 +82,8 @@ function getTimeoutVal(unit) {
 function getTimeUntil(endTime, unit) {
     unit = unit || $.rand([HR, MIN, SEC]);
     var remaining = timeLeft(endTime, unit);
-    var time1 = $.rand(remaining);
-    var time2 = remaining - time1;
+    var time1 = $.rand(remaining) + 1; // prevent a 0 for time1
+    var time2 = remaining - time1 - 1;
     return {
         "time1": humanizeFloat(time1),
         "time2": humanizeFloat(time2),
@@ -91,7 +91,7 @@ function getTimeUntil(endTime, unit) {
         // for internationalization
         "unit1": humanizeUnit(time1, unit),
         "unit2": humanizeUnit(time2, unit),
-    }
+    };
 }
 
 /*
@@ -101,6 +101,29 @@ function getTimeUntil(endTime, unit) {
 function timeLeft(endTime, unit) {
     var diff = endTime.getTime() - Date.now();
     return UNIT_CONVERTER[unit](diff);
+}
+
+/*
+ * Returns either time until sunrise or
+ * time until sunset depending on the current time
+ * returns the correct class to apply to the `body`
+ */
+function getEndTimeData(position) {
+    var sunTimes = SunCalc.getTimes(new Date(), position.coords.latitude, position.coords.longitude);
+    var remaining = timeLeft(sunTimes.sunsetStart, SEC);
+    var endTimeData;
+    if (remaining <= 0) {
+        endTimeData = {
+            "endTimeKlass": "sunrise",
+            "endTime": sunTimes.dawn,
+        };
+    } else {
+        endTimeData = {
+            "endTimeKlass": "sunset",
+            "endTime": sunTimes.sunsetStart,
+        };
+    }
+    return endTimeData;
 }
 
 function inSeconds(diff) {
@@ -122,11 +145,16 @@ function inDays(diff) {
 function displayTimes(position) {
     $(".waiting").hide();
     $(".container").show();
-    var sunTimes = SunCalc.getTimes(new Date(), position.coords.latitude, position.coords.longitude);
+
     var daySplit = getTimeUntil(END_DATE, DAY);
-    var timeSplit = getTimeUntil(sunTimes.sunsetStart);
     displayDaySplit(daySplit, ".daySplit");
+
+    var endTimeData = getEndTimeData(position);
+    var timeSplit = getTimeUntil(endTimeData.endTime);
     displayTimeSplit(timeSplit, ".timeSplit");
+
+    $("body").removeClass().addClass(endTimeData.endTimeKlass);
+
     // update display after unit units
     setTimeout(function() {
         displayTimes(position);
