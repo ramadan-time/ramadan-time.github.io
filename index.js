@@ -71,7 +71,11 @@ function humanizeUnit(val, unit) {
 }
 
 function getTimeoutVal(unit) {
-    return UNIT_TIMES[unit];
+    var timeoutVal = UNIT_TIMES[unit];
+    if (timeoutVal === undefined) {
+      timeoutVal = 1000*60;
+    }
+    return timeoutVal;
 }
 
 /*
@@ -162,9 +166,9 @@ function displayTimes(position) {
     $("body").removeClass().addClass(endTimeData.endTimeKlass);
 
     // update display after unit units
-    //setTimeout(function() {
-    //    displayTimes(position);
-    //}, getTimeoutVal(timeSplit.unit));
+    setTimeout(function() {
+        displayTimes(position);
+    }, getTimeoutVal(timeSplit.unit));
 }
 
 
