@@ -24,7 +24,8 @@ body {
 .timeSplit {
     font-size: 75px;
     text-align: center;
-    padding: 250px;
+    margin-top: 220px;
+    height: 250px;
 }
 
 .timeSplit-until {
@@ -39,7 +40,6 @@ body {
     font-size: 15px;
 }
 
-
 .share {
     clear: both;
     height: 25px;
@@ -51,13 +51,8 @@ body {
     display: none;
 }
 
-.fb-like {
-    top: -3px;
-    padding-right: 35px;
-}
-
-.hn-share-button {
-    padding-right: 30px;
+.gplusone {
+    padding-right: -15px;
 }
 
 @media (max-width: 767px) {
@@ -73,4 +68,3 @@ body {
         margin-left: -42px;
     }
 }
-
