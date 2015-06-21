@@ -64,7 +64,7 @@ function humanizeFloat(x) {
 }
 
 function humanizeUnit(val, unit) {
-    if (val === 1) {
+    if (val == 1) {
         unit = unit.slice(0, -1);
     }
     return unit;
@@ -73,7 +73,7 @@ function humanizeUnit(val, unit) {
 function getTimeoutVal(unit) {
     var timeoutVal = UNIT_TIMES[unit];
     if (timeoutVal === undefined) {
-      timeoutVal = 1000*60;
+        timeoutVal = 1000 * 60;
     }
     return timeoutVal;
 }
@@ -87,16 +87,24 @@ function getTimeUntil(endTime, unit) {
     var time1 = 0;
     var time2 = 0;
     var count = 0;
+    var units = [HR, MIN, SEC];
     while ((time1 === 0 || time2 === 0) && count < 10) {
-        unit = unit || $.rand([HR, MIN, SEC]);
+        unit = unit || $.rand(units);
         var remaining = timeLeft(endTime, unit);
-        time1 = $.rand(remaining);
-        time2 = remaining - time1;
+        time1 = humanizeFloat($.rand(remaining));
+        time2 = humanizeFloat(remaining - time1);
         count++;
+        if (time1 === 0 && time2 === 0) {
+            var index = units.indexOf(unit);
+            if (index > -1) {
+                units.splice(index, 1);
+            }
+            count = 0;
+        }
     }
     return {
-        "time1": humanizeFloat(time1),
-        "time2": humanizeFloat(time2),
+        "time1": time1,
+        "time2": time2,
         "unit": unit,
         // for internationalization
         "unit1": humanizeUnit(time1, unit),
