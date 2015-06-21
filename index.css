@@ -1,0 +1,21 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #4A89DC;
+    color: #fff;
+}
+
+.container {
+    padding: 10px;
+}
+
+.daySplit {}
+
+.timeSplit {
+    font-size: 75px;
+    text-align: center;
+    padding: 250px;
+}
+
+.timeSplit-until {
+    font-size: 50px;
+}
