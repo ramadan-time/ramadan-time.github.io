@@ -1,4 +1,2 @@
-# joshblum.github.io
-github.io
-
-Ramadan calculator for @amirw.
+# Ramadan Calculator
+See the time remaining the current for Ramadan based on your location.
