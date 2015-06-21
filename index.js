@@ -167,7 +167,12 @@ function displayTimes(position) {
     }, getTimeoutVal(timeSplit.unit));
 }
 
-$(function() {
+
+$(document).ready(function() {
+    loadSharing();
+    setTimeout(function() {
+        $(".subshare").fadeIn();
+    }, 2500);
     UNIT_CONVERTER[DAY] = inDays;
     UNIT_CONVERTER[HR] = inHours;
     UNIT_CONVERTER[MIN] = inMinutes;

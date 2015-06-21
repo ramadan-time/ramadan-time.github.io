@@ -43,10 +43,3 @@ function loadSharing() {
         s.parentNode.insertBefore(g, s);
     }(document, "script"));
 }
-
-$(document).ready(function() {
-    loadSharing();
-    setTimeout(function() {
-        $(".subshare").fadeIn();
-    }, 2500);
-});
