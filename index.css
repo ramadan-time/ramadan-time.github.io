@@ -65,7 +65,7 @@ body {
         font-size: 13px;
     }
     .timeSplit {
-        height: 275px;
+        height: 200px;
         margin-top: 30px;
     }
     .share {
@@ -78,5 +78,8 @@ body {
     }
     .hn-share-iframe {
         margin-left: -42px;
+    }
+    #twitter-widget-0 {
+        padding-right: 17px;
     }
 }
