@@ -51,6 +51,10 @@ body {
     display: none;
 }
 
+.hn-share-frame {
+    margin-right: -25px;
+}
+
 .fb-like {
     top: -4px;
 }
@@ -80,7 +84,7 @@ body {
         margin-right: 39px;
     }
     .hn-share-iframe {
-        margin-left: -42px;
+        margin-left: -35px;
     }
     #twitter-widget-0 {
         padding-right: 17px;
