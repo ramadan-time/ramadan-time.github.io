@@ -2,9 +2,12 @@
 
 var END_DATE = new Date("Sat Jul 18 2015");
 var DEFAULT_COORDS = { // Haifa
-    "latitude": 32.8167,
-    "longitude": 34.9833,
-}
+    "coords": {
+        "latitude": 32.8167,
+        "longitude": 34.9833,
+    }
+};
+
 var DAY = "days";
 var HR = "hours";
 var MIN = "minutes";
@@ -34,14 +37,11 @@ UNIT_TIMES[DAY] = UNIT_TIMES[HR] * 24;
 
 function getCoords(callback) {
     if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(function(position) {
-                callback(position.coords.latitude, position.coords.longitude);
-            },
-            function(error) {
-                callback(DEFAULT_COORDS.latitude, DEFAULT_COORDS.longitude);
-            });
+        navigator.geolocation.watchPosition(callback, function(error) {
+            callback(DEFAULT_COORDS);
+        });
     } else {
-        callback(DEFAULT_COORDS.latitude, DEFAULT_COORDS.longitude);
+        callback(DEFAULT_COORDS);
     }
 }
 
@@ -118,15 +118,17 @@ function inDays(diff) {
 }
 
 function main() {
-    getCoords(function(latitude, longitude) {
-        var sunTimes = SunCalc.getTimes(new Date(), latitude, longitude);
-        var daySplit = getTimeUntil(END_DATE, DAY);
-        var timeSplit = getTimeUntil(sunTimes.sunsetStart);
-        displayDaySplit(daySplit, ".daySplit");
-        displayTimeSplit(timeSplit, ".timeSplit");
-        // update display after unit units
-        setTimeout(main, getTimeoutVal(timeSplit.unit));
-    });
+    getCoords(displayTimes);
+}
+
+function displayTimes(position) {
+    var sunTimes = SunCalc.getTimes(new Date(), position.coords.latitude, position.coords.longitude);
+    var daySplit = getTimeUntil(END_DATE, DAY);
+    var timeSplit = getTimeUntil(sunTimes.sunsetStart);
+    displayDaySplit(daySplit, ".daySplit");
+    displayTimeSplit(timeSplit, ".timeSplit");
+    // update display after unit units
+    setTimeout(main, getTimeoutVal(timeSplit.unit));
 }
 
 $(function() {
@@ -134,5 +136,6 @@ $(function() {
     UNIT_CONVERTER[HR] = inHours;
     UNIT_CONVERTER[MIN] = inMinutes;
     UNIT_CONVERTER[SEC] = inSeconds;
+    displayTimes(DEFAULT_COORDS);
     main();
 });
