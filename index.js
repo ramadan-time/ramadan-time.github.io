@@ -17,8 +17,8 @@ var UNIT_CONVERTER = {};
 
 // times in ms
 var UNIT_TIMES = {};
-UNIT_TIMES[SEC] = 1000;
-UNIT_TIMES[MIN] = UNIT_TIMES[SEC] * 60;
+UNIT_TIMES[SEC] = 3000; // one second is too annoying
+UNIT_TIMES[MIN] = 1000 * 60;
 UNIT_TIMES[HR] = UNIT_TIMES[MIN] * 60;
 UNIT_TIMES[DAY] = UNIT_TIMES[HR] * 24;
 
