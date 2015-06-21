@@ -8,7 +8,11 @@ body {
     padding: 10px;
 }
 
-.daySplit {}
+.waiting {
+    font-size: 75px;
+    text-align: center;
+    padding: 250px;
+}
 
 .timeSplit {
     font-size: 75px;

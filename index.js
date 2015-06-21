@@ -39,6 +39,8 @@ function getCoords(callback) {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(callback, function(error) {
             callback(DEFAULT_COORDS);
+        }, {
+            "timeout": 5000
         });
     } else {
         callback(DEFAULT_COORDS);
@@ -117,18 +119,18 @@ function inDays(diff) {
     return inHours(diff) / 24;
 }
 
-function main() {
-    getCoords(displayTimes);
-}
-
 function displayTimes(position) {
+    $(".waiting").hide();
+    $(".container").show();
     var sunTimes = SunCalc.getTimes(new Date(), position.coords.latitude, position.coords.longitude);
     var daySplit = getTimeUntil(END_DATE, DAY);
     var timeSplit = getTimeUntil(sunTimes.sunsetStart);
     displayDaySplit(daySplit, ".daySplit");
     displayTimeSplit(timeSplit, ".timeSplit");
     // update display after unit units
-    setTimeout(main, getTimeoutVal(timeSplit.unit));
+    setTimeout(function() {
+        displayTimes(position);
+    }, getTimeoutVal(timeSplit.unit));
 }
 
 $(function() {
@@ -136,6 +138,6 @@ $(function() {
     UNIT_CONVERTER[HR] = inHours;
     UNIT_CONVERTER[MIN] = inMinutes;
     UNIT_CONVERTER[SEC] = inSeconds;
-    displayTimes(DEFAULT_COORDS);
-    main();
+    $(".container").hide();
+    getCoords(displayTimes);
 });
