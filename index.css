@@ -38,3 +38,39 @@ body {
 .daySplit-until {
     font-size: 15px;
 }
+
+
+.share {
+    clear: both;
+    height: 25px;
+    text-align: center;
+    padding: 15px 0px 0px;
+}
+
+.subshare {
+    display: none;
+}
+
+.fb-like {
+    top: -3px;
+    padding-right: 35px;
+}
+
+.hn-share-button {
+    padding-right: 30px;
+}
+
+@media (max-width: 767px) {
+    .share {
+        margin-left: 10px;
+        padding-bottom: 15px;
+    }
+    .fb-like {
+        margin-left: -14px;
+        margin-right: 39px;
+    }
+    .hn-share-iframe {
+        margin-left: -42px;
+    }
+}
+
