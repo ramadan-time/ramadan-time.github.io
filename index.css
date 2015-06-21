@@ -51,6 +51,10 @@ body {
     display: none;
 }
 
+.fb-like {
+  top: -4px;
+}
+
 @media (max-width: 767px) {
     .timeSplit {
         font-size: 50px;

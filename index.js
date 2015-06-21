@@ -37,7 +37,7 @@ UNIT_TIMES[DAY] = UNIT_TIMES[HR] * 24;
 
 function getCoords(callback) {
     if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(callback, function(error) {
+        navigator.geolocation.getCurrentPosition(callback, function(error) {
             callback(DEFAULT_COORDS);
         }, {
             "timeout": 5000
