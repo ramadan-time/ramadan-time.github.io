@@ -25,7 +25,7 @@ body {
     font-size: 75px;
     text-align: center;
     margin-top: 200px;
-    height: 250px;
+    height: 300px;
 }
 
 .timeSplit-until {
@@ -52,7 +52,7 @@ body {
 }
 
 .fb-like {
-  top: -4px;
+    top: -4px;
 }
 
 @media (max-width: 767px) {
@@ -69,7 +69,6 @@ body {
         font-size: 13px;
     }
     .timeSplit {
-        height: 275px;
         margin-top: 30px;
     }
     .share {
