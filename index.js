@@ -80,10 +80,16 @@ function getTimeoutVal(unit) {
  * into two parts.
  */
 function getTimeUntil(endTime, unit) {
-    unit = unit || $.rand([HR, MIN, SEC]);
-    var remaining = timeLeft(endTime, unit);
-    var time1 = $.rand(remaining) + 1; // prevent a 0 for time1
-    var time2 = remaining - time1 - 1;
+    var time1 = 0;
+    var time2 = 0;
+    var count = 0;
+    while ((time1 === 0 || time2 === 0) && count < 10) {
+        unit = unit || $.rand([HR, MIN, SEC]);
+        var remaining = timeLeft(endTime, unit);
+        time1 = $.rand(remaining);
+        time2 = remaining - time1;
+        count++;
+    }
     return {
         "time1": humanizeFloat(time1),
         "time2": humanizeFloat(time2),
