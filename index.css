@@ -8,7 +8,7 @@ body {
 }
 
 .sunrise {
-  background-color:#b48484;
+    background-color: #b48484;
 }
 
 .container {
@@ -29,4 +29,12 @@ body {
 
 .timeSplit-until {
     font-size: 50px;
+}
+
+.daySplit {
+    font-size: 20px;
+}
+
+.daySplit-until {
+    font-size: 15px;
 }
