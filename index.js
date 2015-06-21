@@ -98,8 +98,8 @@ function getTimeUntil(endTime, unit) {
             var index = units.indexOf(unit);
             if (index > -1) {
                 units.splice(index, 1);
+                count = 0;
             }
-            count = 0;
         }
     }
     return {
@@ -128,18 +128,25 @@ function timeLeft(endTime, unit) {
  */
 function getEndTimeData(position) {
     var sunTimes = SunCalc.getTimes(new Date(), position.coords.latitude, position.coords.longitude);
-    var remaining = timeLeft(sunTimes.sunsetStart, SEC);
+    var timeToSunset = timeLeft(sunTimes.sunsetStart, SEC);
+    var timeToDawn = timeLeft(sunTimes.dawn, SEC);
     var endTimeData;
-    if (remaining <= 0) {
-        endTimeData = {
-            "endTimeKlass": "sunrise",
-            "endTime": sunTimes.dawn,
-        };
-    } else {
+    if (timeToSunset >= 0 && timeToDawn <= 0) {
         endTimeData = {
             "endTimeKlass": "sunset",
             "endTime": sunTimes.sunsetStart,
+            "endTimeText": "until sunset.",
         };
+    } else {
+        endTimeData = {
+            "endTimeKlass": "dawn",
+            "endTime": sunTimes.dawn,
+            "endTimeText": "until dawn.",
+        };
+    }
+    if (timeToSunset < 0 && timeToDawn < 0) { // dawn the next day
+        var sunTimes = SunCalc.getTimes(new Date(new Date().getTime() + 24 * 60 * 60 * 1000), position.coords.latitude, position.coords.longitude);
+        endTimeData.endTime = sunTimes.dawn;
     }
     return endTimeData;
 }
@@ -172,6 +179,7 @@ function displayTimes(position) {
     displayTimeSplit(timeSplit, ".timeSplit");
 
     $("body").removeClass().addClass(endTimeData.endTimeKlass);
+    $(".timeSplit-val").html(endTimeData.endTimeText);
 
     // update display after unit units
     setTimeout(function() {
@@ -181,14 +189,15 @@ function displayTimes(position) {
 
 
 $(document).ready(function() {
-    loadSharing();
-    setTimeout(function() {
-        $(".subshare").fadeIn();
-    }, 2500);
     UNIT_CONVERTER[DAY] = inDays;
     UNIT_CONVERTER[HR] = inHours;
     UNIT_CONVERTER[MIN] = inMinutes;
     UNIT_CONVERTER[SEC] = inSeconds;
     $(".container").hide();
     getCoords(displayTimes);
+
+    loadSharing();
+    setTimeout(function() {
+        $(".subshare").fadeIn();
+    }, 2500);
 });
