@@ -162,17 +162,17 @@ function displayTimes(position) {
     $("body").removeClass().addClass(endTimeData.endTimeKlass);
 
     // update display after unit units
-    setTimeout(function() {
-        displayTimes(position);
-    }, getTimeoutVal(timeSplit.unit));
+    //setTimeout(function() {
+    //    displayTimes(position);
+    //}, getTimeoutVal(timeSplit.unit));
 }
 
 
 $(document).ready(function() {
-    //loadSharing();
-    //setTimeout(function() {
-    //    $(".subshare").fadeIn();
-    //}, 2500);
+    loadSharing();
+    setTimeout(function() {
+        $(".subshare").fadeIn();
+    }, 2500);
     UNIT_CONVERTER[DAY] = inDays;
     UNIT_CONVERTER[HR] = inHours;
     UNIT_CONVERTER[MIN] = inMinutes;
