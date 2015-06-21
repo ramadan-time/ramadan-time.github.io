@@ -24,7 +24,7 @@ body {
 .timeSplit {
     font-size: 75px;
     text-align: center;
-    margin-top: 220px;
+    margin-top: 200px;
     height: 250px;
 }
 
@@ -51,11 +51,23 @@ body {
     display: none;
 }
 
-.gplusone {
-    padding-right: -15px;
-}
-
 @media (max-width: 767px) {
+    .timeSplit {
+        font-size: 50px;
+    }
+    .timeSplit-until {
+        font-size: 35px;
+    }
+    .daySplit {
+        font-size: 15px;
+    }
+    .daySplit-until {
+        font-size: 13px;
+    }
+    .timeSplit {
+        height: 275px;
+        margin-top: 30px;
+    }
     .share {
         margin-left: 10px;
         padding-bottom: 15px;
