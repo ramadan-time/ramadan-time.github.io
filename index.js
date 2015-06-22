@@ -36,15 +36,11 @@ UNIT_TIMES[DAY] = UNIT_TIMES[HR] * 24;
 })(jQuery);
 
 function getCoords(callback) {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(callback, function(error) {
-            callback(DEFAULT_COORDS);
-        }, {
-            "timeout": 5000
-        });
-    } else {
+    geolocator.locate(callback, function(error) {
         callback(DEFAULT_COORDS);
-    }
+    }, true, { // fallback to IP is true
+        "timeout": 5000
+    });
 }
 
 function displayDaySplit(split, klass) {
