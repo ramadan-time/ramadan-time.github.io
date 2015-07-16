@@ -1,6 +1,7 @@
 "use strict";
 
 var END_DATE = new Date("Sat Jul 18 2015");
+var NEXT_YEAR = new Date("Mon Jun 6 2016");
 var DEFAULT_COORDS = { // Haifa
     "coords": {
         "latitude": 32.8167,
@@ -183,15 +184,25 @@ function displayTimes(position) {
     }, getTimeoutVal(timeSplit.unit));
 }
 
+function displayNextYear() {
+    $(".waiting").hide();
+    var daySplit = getTimeUntil(NEXT_YEAR, DAY);
+    $(".daySplit").hide();
+    displayTimeSplit(daySplit, ".timeSplit");
+    $(".timeSplit-val").text("until Ramadan begins.");
+}
 
 $(document).ready(function() {
     UNIT_CONVERTER[DAY] = inDays;
     UNIT_CONVERTER[HR] = inHours;
     UNIT_CONVERTER[MIN] = inMinutes;
     UNIT_CONVERTER[SEC] = inSeconds;
-    $(".container").hide();
-    getCoords(displayTimes);
-
+    if (Date.now() > END_DATE) {
+        displayNextYear();
+    } else {
+        $(".container").hide();
+        getCoords(displayTimes);
+    }
     loadSharing();
     setTimeout(function() {
         $(".subshare").fadeIn();
