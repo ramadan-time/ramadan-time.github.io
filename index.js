@@ -1,7 +1,7 @@
 "use strict";
 
-var END_DATE = new Date("Sat Jul 18 2015");
-var NEXT_YEAR = new Date("Mon Jun 6 2016");
+var END_DATE = new Date("Jul 16 2015");
+var NEXT_YEAR = new Date("Jun 6 2016");
 var DEFAULT_COORDS = { // Haifa
     "coords": {
         "latitude": 32.8167,
