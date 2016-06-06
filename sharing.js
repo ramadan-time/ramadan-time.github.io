@@ -20,7 +20,7 @@ function loadSharing() {
     if (!d.getElementById(id)) {
       js = d.createElement(s);
       js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
+      js.src = "//platform.twitter.com/widgets.js";
       fjs.parentNode.insertBefore(js, fjs);
     }
   }(document, "script", "twitter-wjs"));
@@ -30,7 +30,7 @@ function loadSharing() {
     var po = document.createElement("script");
     po.type = "text/javascript";
     po.async = true;
-    po.src = "https://apis.google.com/js/plusone.js";
+    po.src = "//apis.google.com/js/plusone.js";
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(po, s);
   })();
@@ -39,7 +39,7 @@ function loadSharing() {
   (function(d, t) {
     var g = d.createElement(t),
       s = d.getElementsByTagName(t)[0];
-    g.src = "http://hnbutton.appspot.com/static/hn.min.js";
+    g.src = "//hnbutton.appspot.com/static/hn.min.js";
     s.parentNode.insertBefore(g, s);
   }(document, "script"));
 }
