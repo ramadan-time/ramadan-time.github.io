@@ -1,92 +1,79 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
 }
-
 .sunset {
-    background-color: #4A89DC;
+  background-color: #4A89DC;
 }
-
 .dawn {
-    background-color: #b48484;
+  background-color: #b48484;
 }
-
 .container {
-    padding: 10px;
+  padding: 10px;
 }
-
 .waiting {
-    font-size: 75px;
-    text-align: center;
-    padding: 250px;
+  font-size: 75px;
+  text-align: center;
+  padding: 250px;
 }
-
 .timeSplit {
-    font-size: 75px;
-    text-align: center;
-    margin-top: 150px;
-    height: 300px;
+  font-size: 75px;
+  text-align: center;
+  margin-top: 150px;
+  height: 300px;
 }
-
 .timeSplit-until {
-    font-size: 50px;
+  font-size: 50px;
 }
-
 .daySplit {
-    font-size: 20px;
+  font-size: 20px;
 }
-
 .daySplit-until {
-    font-size: 15px;
+  font-size: 15px;
 }
-
 .share {
-    clear: both;
-    height: 25px;
-    text-align: center;
-    padding: 15px 0px 0px;
+  clear: both;
+  height: 25px;
+  text-align: center;
+  padding: 15px 0px 0px;
 }
-
 .subshare {
-    display: none;
+  display: none;
 }
-
 .hn-share-iframe {
-    margin-right: -25px;
+  margin-right: -25px;
 }
-
 .fb-like {
-    top: -4px;
+  top: -4px;
 }
-
 @media (max-width: 767px) {
-    .timeSplit {
-        font-size: 50px;
-    }
-    .timeSplit-until {
-        font-size: 35px;
-    }
-    .daySplit {
-        font-size: 15px;
-    }
-    .daySplit-until {
-        font-size: 13px;
-    }
-    .timeSplit {
-        margin-top: 30px;
-    }
-    .share {
-        margin-left: 10px;
-        padding-bottom: 15px;
-    }
-    .fb-like {
-        margin-left: -14px;
-        margin-right: 39px;
-    }
-    .hn-share-iframe {
-        margin-left: -35px;
-    }
-    #twitter-widget-0 {
-        padding-right: 17px;
-    }
+  .timeSplit {
+    font-size: 50px;
+  }
+  .timeSplit-until {
+    font-size: 35px;
+  }
+  .daySplit {
+    font-size: 15px;
+  }
+  .daySplit-until {
+    font-size: 13px;
+  }
+  .timeSplit {
+    margin-top: 30px;
+  }
+  .share {
+    margin-left: 10px;
+    padding-bottom: 15px;
+  }
+  .fb-like {
+    margin-left: -14px;
+    margin-right: 39px;
+  }
+  .hn-share-iframe {
+    margin-left: -35px;
+  }
+  #twitter-widget-0 {
+    padding-right: 17px;
+  }
 }
