@@ -1,7 +1,7 @@
 "use strict";
 
-var END_DATE = new Date("Jun 24 2017");
-var NEXT_YEAR = new Date("May 15 2017");
+var NEXT_YEAR = new Date("May 16 2018");
+var END_DATE = new Date("Jun 14 2018");
 var DEFAULT_COORDS = { // Haifa
   "coords": {
     "latitude": 32.8167,
@@ -197,7 +197,8 @@ $(document).ready(function() {
   UNIT_CONVERTER[HR] = inHours;
   UNIT_CONVERTER[MIN] = inMinutes;
   UNIT_CONVERTER[SEC] = inSeconds;
-  if (Date.now() > END_DATE) {
+  var now = Date.now();
+  if (now < NEXT_YEAR || now > END_DATE) {
     displayNextYear();
   } else {
     $(".container").hide();
